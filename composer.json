@@ -1,0 +1,17 @@
+{
+    "name": "myapp/app",
+    "description": "Demo for dependency injection",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michelangelo",
+            "email": "dragonbe+github@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "MyApp\\": "src/"
+        }
+    }
+}
