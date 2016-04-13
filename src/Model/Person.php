@@ -1,36 +1,35 @@
 <?php
 
-namespace Myapp\Model;
+namespace MyApp\Model;
 
 class Person
 {
-    const P_GENDER_M = 'male';
-    const P_GENDER_F = 'female';
-
-    /**
-     * @var string $name The name of this person
-     */
+    const PG_MALE = 'mail';
+    const PG_FEMAIL = 'femail';
+    
     protected $name;
-    /**
-     * @var \DateTime $birthdate The birthdate of this person
-     */
     protected $birthdate;
-    /**
-     * @var string $gender The gender of this person
-     */
     protected $gender;
     
-    /**
-     * Constructor for Person class
-     *
-     * @param string $name
-     * @param \DateTime $birthdate
-     * @param string $gender
-     */
-    public function __construct($name, \DateTime $birthdate, $gender = self::P_GENGER_F)
+    public function __construct ($name, \DateTime $birtdate, $gender = self::PG_FEMALE)
     {
         $this->name = (string) $name;
         $this->birthdate = $birthdate;
-        $this->gender = $gender;
+        $this->gender = (string) $gender;
+    }
+    
+    public function getName()
+    {
+        return $this->name;
+    }
+    
+    public function getBirthdate()
+    {
+        return $this->birthdate->format('Y-m-d');
+    }
+    
+    public function getGender()
+    {
+        return $this->gender;
     }
 }
