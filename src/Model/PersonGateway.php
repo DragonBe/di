@@ -1,6 +1,6 @@
 <?php
 
-namespace MyApp\Model
+namespace MyApp\Model;
 
 class PersonGateway
 {
@@ -21,8 +21,8 @@ class PersonGateway
     
     public function findByName($name)
     {
-        $sql = 'SELECT * FROM `' . self::tableName . '` WHERE `name` = ?';
-        $stmt = $this->pdo->prepare()
+        $sql = 'SELECT * FROM `' . $this->tableName . '` WHERE `name` = ?';
+        $stmt = $this->pdo->prepare($sql);
         $stmt->execute(array ($name));
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }

@@ -2,6 +2,8 @@
 
 namespace MyApp;
 
+use MyApp\Model\PersonGateway;
+
 class App
 {
     /**
@@ -26,8 +28,8 @@ class App
      */
     public function listPersons()
     {
-        $resultSet = $this->pdo->query('SELECT * FROM `person`');
-        return $resultSet->fetchAll(\PDO::FETCH_ASSOC);
+        $pgw = new PersonGateway($this->pdo);
+        return $pgw->fetchAll();
     }
     
     /**
@@ -38,8 +40,7 @@ class App
      */
     public function findPersonByName($name)
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM `person` WHERE `name` = ?');
-        $stmt->execute(array ($name));
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
+        $pgw = new PersonGateway($this->pdo);
+        return $pgw->findByName($name);
     }
 }
