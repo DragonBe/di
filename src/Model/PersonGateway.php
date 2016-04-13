@@ -14,7 +14,7 @@ class PersonGateway
     
     public function fetchAll()
     {
-        $sql = 'SELECT * FROM `' . self::tableName . '`';
+        $sql = 'SELECT * FROM `' . $this->tableName . '`';
         $stmt = $this->pdo->query($sql);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
