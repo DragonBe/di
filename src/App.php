@@ -4,12 +4,14 @@ namespace MyApp;
 
 use MyApp\Model\PersonGateway;
 
+use Pimple\Container;
+
 class App
 {
     /**
-     * @var \PDO $pdo The PHP Data Object
+     * @var Container $di The Pimple DI container
      */
-    protected $pdo;
+    protected $di;
     
     /**
      * Constructor for this App
@@ -18,7 +20,10 @@ class App
      */
     public function __construct($dsn)
     {
-        $this->pdo = new \PDO($dsn);
+        $this->di = new Container();
+        $this->di['personGateway'] = function ($c) use ($dsn) {
+            return new PersonGateway(new \PDO($dsn));
+        };
     }
     
     /**
@@ -28,7 +33,7 @@ class App
      */
     public function listPersons()
     {
-        $pgw = new PersonGateway($this->pdo);
+        $pgw = $this->di['personGateway'];
         return $pgw->fetchAll();
     }
     
@@ -40,7 +45,7 @@ class App
      */
     public function findPersonByName($name)
     {
-        $pgw = new PersonGateway($this->pdo);
+        $pgw = $this->di['personGateway'];
         return $pgw->findByName($name);
     }
 }
