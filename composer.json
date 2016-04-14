@@ -13,5 +13,8 @@
         "psr-4": {
             "MyApp\\": "src/"
         }
+    },
+    "require": {
+        "pimple/pimple": "^3.0"
     }
 }
